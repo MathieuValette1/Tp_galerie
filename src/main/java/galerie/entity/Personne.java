@@ -4,12 +4,10 @@ import java.util.List;
 import javax.persistence.*;
 import lombok.*;
 
-// Un exemple d'entité
-// On utilise Lombok pour auto-générer getter / setter / toString...
-// cf. https://examples.javacodegeeks.com/spring-boot-with-lombok/
+
 @Getter @Setter @NoArgsConstructor @RequiredArgsConstructor @ToString
-@Entity // Une entité JPA
-public class Galerie {
+@Entity
+public class Personne {
     @Id  @GeneratedValue(strategy = GenerationType.IDENTITY) 
     @Setter(AccessLevel.NONE)
     private Integer id;
@@ -19,10 +17,9 @@ public class Galerie {
     private String nom;
     
     @Column(unique=true)
-    @NonNull
     private String adresse;
     
     @ToString.Exclude
-    @OneToMany(mappedBy = "organisateur", cascade = CascadeType.PERSIST)
-    private List<Exposition> expositions = new LinkedList<>();
+    @OneToMany(mappedBy = "client", cascade = CascadeType.PERSIST)
+    private List<Transaction> transactions = new LinkedList<>();
 }
