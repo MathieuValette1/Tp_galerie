@@ -11,14 +11,14 @@ import lombok.*;
 @Entity // Une entité JPA
 public class Galerie {
     @Id  @GeneratedValue(strategy = GenerationType.IDENTITY) 
-    @Setter(AccessLevel.NONE)
+    
     private Integer id;
 
-    @Column(unique=true)
+    @Column
     @NonNull
     private String nom;
     
-    @Column(unique=true)
+    @Column
     @NonNull
     private String adresse;
     

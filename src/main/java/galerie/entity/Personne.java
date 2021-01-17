@@ -1,15 +1,22 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package galerie.entity;
-import java.util.LinkedList;
-import java.util.List;
 import javax.persistence.*;
 import lombok.*;
+import java.util.*;
 
-
+/**
+ *
+ * @author Mathieu
+ */
 @Getter @Setter @NoArgsConstructor @RequiredArgsConstructor @ToString
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Personne {
     @Id  @GeneratedValue(strategy = GenerationType.IDENTITY) 
-    @Setter(AccessLevel.NONE)
     private Integer id;
 
     @Column(unique=true)
@@ -17,9 +24,19 @@ public class Personne {
     private String nom;
     
     @Column(unique=true)
+    @NonNull
     private String adresse;
     
-    @ToString.Exclude
-    @OneToMany(mappedBy = "client", cascade = CascadeType.PERSIST)
-    private List<Transaction> transactions = new LinkedList<>();
+    @OneToMany(mappedBy = "client")
+    private List<Transactions> achats;
+    
+    public float budgetArt(int annee) {
+        float budget = 0;
+        for (Transactions t : achats) {
+            if (t.getDateTransac().getYear() == annee) {
+                budget += t.getPrixVente();
+            }
+        }
+        return budget;
+    }
 }

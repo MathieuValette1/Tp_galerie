@@ -1,23 +1,26 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package galerie.entity;
 import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.*;
 import lombok.*;
 
-
+/**
+ *
+ * @author Mathieu
+ */
 @Getter @Setter @NoArgsConstructor @RequiredArgsConstructor @ToString
 @Entity
-@Inheritance(strategy = InheritanceType. TABLE_PER_CLASS)
-public class Artiste  extends Personne{
-    @Id  @GeneratedValue(strategy = GenerationType.IDENTITY) 
-    @Setter(AccessLevel.NONE)
-    private Integer id;
+public class Artiste extends Personne {
 
     @Column(unique=true)
     @NonNull
     private String biographie;
     
-    @ToString.Exclude
-    @OneToMany(mappedBy = "auteur", cascade = CascadeType.PERSIST)
-    private List<Tableau> tableaux = new LinkedList<>();
+    @OneToMany (mappedBy = "auteur")
+    private List<Tableau> oeuvres = new LinkedList<>();
 }

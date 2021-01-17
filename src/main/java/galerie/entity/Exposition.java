@@ -12,17 +12,16 @@ public class Exposition {
     @Setter(AccessLevel.NONE)
     private Integer id;
 
-    @Column(unique=true)
+    @Column
     @NonNull
     private String intitule;
     
-    @Column(unique=true)
+    @Column
     @NonNull
     private int duree;
     
-    @Column(unique=true)
-    @NonNull
-    private LocalDate date;
+    @Column
+    private LocalDate dateexpo;
     
     @ManyToOne
     @NonNull
@@ -30,8 +29,17 @@ public class Exposition {
     
     @ToString.Exclude
     @OneToMany(mappedBy = "lieuVente", cascade = CascadeType.PERSIST)
-    private List<Transaction> transactions = new LinkedList<>();
+    private List<Transactions> transactions = new LinkedList<>();
     
     @ManyToMany
     List<Tableau> oeuvres = new LinkedList<>();
+    
+    public float chiffreAffaire(){
+        float chiffreAffaire = 0;
+        for (Transactions t: transactions){
+            chiffreAffaire = chiffreAffaire + t.getPrixVente();
+        
+        }
+        return chiffreAffaire;
+    }
 }

@@ -15,23 +15,23 @@ public class Tableau {
     @NonNull
     private String titre;
     
-    @Column(unique=true)
+    @Column
     @NonNull
     private String support;
     
-    @Column(unique=true)
+    @Column
     @NonNull
     private int largeur;
     
-    @Column(unique=true)
+    @Column
     @NonNull
     private int hauteur;
     
-    @ManyToMany(mappedBy = "tableau")
+    @ManyToMany(mappedBy = "oeuvres")
     List<Exposition> accrochages = new LinkedList<>();
     
     @OneToOne(mappedBy="tableau")
-    private Transaction tansaction;
+    private Transactions transaction;
     
     @ManyToOne
     @NonNull
