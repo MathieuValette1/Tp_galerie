@@ -28,7 +28,7 @@ public class Exposition {
     private Galerie organisateur;
     
     @ToString.Exclude
-    @OneToMany(mappedBy = "lieuVente", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "lieu_vente", cascade = CascadeType.PERSIST)
     private List<Transactions> transactions = new LinkedList<>();
     
     @ManyToMany
@@ -37,7 +37,7 @@ public class Exposition {
     public float chiffreAffaire(){
         float chiffreAffaire = 0;
         for (Transactions t: transactions){
-            chiffreAffaire = chiffreAffaire + t.getPrixVente();
+            chiffreAffaire = chiffreAffaire + t.getPrix_vente();
         
         }
         return chiffreAffaire;

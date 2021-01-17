@@ -13,15 +13,15 @@ public class Transactions {
 
     @Column
     @NonNull
-    private LocalDate dateTransac;
+    private LocalDate date_transac;
     
     @Column
     @NonNull
-    private float prixVente;
+    private float prix_vente;
     
     @ManyToOne
     @NonNull
-    private Exposition lieuVente;
+    private Exposition lieu_vente;
     
     @ManyToOne
     @NonNull

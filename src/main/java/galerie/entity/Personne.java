@@ -33,8 +33,8 @@ public class Personne {
     public float budgetArt(int annee) {
         float budget = 0;
         for (Transactions t : achats) {
-            if (t.getDateTransac().getYear() == annee) {
-                budget += t.getPrixVente();
+            if (t.getDate_transac().getYear() == annee) {
+                budget += t.getPrix_vente();
             }
         }
         return budget;
