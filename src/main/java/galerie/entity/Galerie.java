@@ -25,4 +25,14 @@ public class Galerie {
     @ToString.Exclude
     @OneToMany(mappedBy = "organisateur", cascade = CascadeType.PERSIST)
     private List<Exposition> expositions = new LinkedList<>();
+    
+    public float cAAnnuel(int annee){
+        float cAAnnuel = 0;
+        for (Exposition e: expositions){
+            if (e.getDateexpo().getYear() == annee){
+                cAAnnuel = cAAnnuel + e.chiffreAffaire();
+            }
+        }
+        return cAAnnuel;
+    }
 }
